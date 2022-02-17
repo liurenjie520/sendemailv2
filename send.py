@@ -1,5 +1,6 @@
 import random
 import re
+import time
 import urllib.request
 import requests
 from bs4 import BeautifulSoup
@@ -41,26 +42,37 @@ class hot_topic(object):
     def crawl_his_tops(self):
         headers={
             "user-agent":self.getRandomAgent(),
+
         }
 
-        time.sleep(5)
-        s = requests.Session()
-        s.mount('http://', HTTPAdapter(max_retries=15))
-        s.mount('https://', HTTPAdapter(max_retries=15))
+        # time.sleep(5)
+        # s = requests.Session()
+        # s.mount('http://', HTTPAdapter(max_retries=6))
+        # s.mount('https://', HTTPAdapter(max_retries=6))
 
         # print(time.strftime('%Y-%m-%d %H:%M:%S'))
-        try:
-            rp = s.get(self.spot_topic, headers=headers, timeout=12)
-            # return r.text
-        except requests.exceptions.RequestException as e:
-            print(e)
+        # try:
+        #     rp = s.get(self.spot_topic, headers=headers, timeout=6)
+        #     # return r.text
+        # except requests.exceptions.RequestException as e:
+        #     print(e)
         # print(time.strftime('%Y-%m-%d %H:%M:%S'))
         #     rp = s.get(self.spot_topic, headers=headers, timeout=5)
 
 
 
-        soup = BeautifulSoup(rp.content,'lxml')
-        his_feeds=soup.find_all(attrs={'class':'jc-c'})[1]
+        try:
+            rp = requests.get(self.spot_topic, headers=headers,timeout=6)
+            soup = BeautifulSoup(rp.content, 'lxml')
+            his_feeds = soup.find_all(attrs={'class': 'jc-c'})[1]
+        except:
+            rp = requests.get("https://tophub.today/n/KqndgxeLl9", headers=headers,timeout=6)
+            soup = BeautifulSoup(rp.content, 'lxml')
+
+            his_feeds = soup.find_all(attrs={'class': 'jc-c'})[1]
+
+        print(type(his_feeds))
+        # print((his_feeds))
         spot_topic_set=[]
         for his_news in his_feeds.find_all('tr'):
             entry=his_news.find_all('td')
@@ -84,7 +96,7 @@ if __name__ == '__main__':
         # '虎嗅网': "https://tophub.today/n/5VaobgvAj1",  # 虎嗅网
         '虎扑社区 步行街热帖': "https://tophub.today/n/G47o8weMmN",  # 虎扑社区 步行街热帖
         '虎扑社区 影音娱乐热帖': "https://tophub.today/n/K7Gda2XeQy",  # 虎扑社区 影音娱乐热帖
-        # '虎扑社区 恋爱区热帖': "https://tophub.today/n/wkvlEkYdz1",  # 虎扑社区 恋爱区热帖
+        '虎扑社区 恋爱区热帖': "https://tophub.today/n/wkvlEkYdz1",  # 虎扑社区 恋爱区热帖
         '吾爱破解 今日热帖': "https://tophub.today/n/NKGoRAzel6",  # 吾爱破解 今日热帖
         '吾爱破解 人气热门': "https://tophub.today/n/Ywv41YMdPa",  # 吾爱破解 人气热门
         '吾爱破解 精品软件区': "https://tophub.today/n/ENeYLEZdY4",  # 吾爱破解 精品软件区
@@ -114,9 +126,9 @@ if __name__ == '__main__':
         website_context="\n".join(["<tr><td>"+spot["热度"] + "<a href=" + spot["链接"] +">" + spot["标题"] + "</a></td></tr>" for spot in spot_topic_set ])
         website_section="<table><tr>{}</tr>{}</table>".format(website_ttile,website_context)
         websites_brief +=website_section
-#         print(website_section)
-    context_ttile="一周热门新闻"
-    sd = sendEmail.send_mail(my_sender, my_pass, my_user, context=websites_brief, my_sender_alias=my_sender_alias, my_user_alias=my_user_alias,tittle=context_ttile)
-    sd.make_message()
-    sd.send_mail()
-    print("完成{}邮件发送".format(context_ttile))
+        print(website_section)
+    # context_ttile="一周热门新闻"
+    # sd = sendEmail.send_mail(my_sender, my_pass, my_user, context=websites_brief, my_sender_alias=my_sender_alias, my_user_alias=my_user_alias,tittle=context_ttile)
+    # sd.make_message()
+    # sd.send_mail()
+    # print("完成{}邮件发送".format(context_ttile))

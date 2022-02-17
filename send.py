@@ -46,9 +46,9 @@ class hot_topic(object):
         }
 
         # time.sleep(5)
-        # s = requests.Session()
-        # s.mount('http://', HTTPAdapter(max_retries=6))
-        # s.mount('https://', HTTPAdapter(max_retries=6))
+        s = requests.Session()
+        s.mount('http://', HTTPAdapter(max_retries=10))
+        s.mount('https://', HTTPAdapter(max_retries=10))
 
         # print(time.strftime('%Y-%m-%d %H:%M:%S'))
         # try:
@@ -62,16 +62,23 @@ class hot_topic(object):
 
 
         try:
-            rp = requests.get(self.spot_topic, headers=headers,timeout=6)
+            rp = requests.get(self.spot_topic, headers=headers,timeout=8)
             soup = BeautifulSoup(rp.content, 'lxml')
             his_feeds = soup.find_all(attrs={'class': 'jc-c'})[1]
         except:
-            rp = requests.get("https://tophub.today/n/KqndgxeLl9", headers=headers,timeout=6)
+            try:
+                # rp = requests.get("https://tophub.today/n/KqndgxeLl9", headers=headers, timeout=6)
+                rp = s.get("https://tophub.today/n/KqndgxeLl9", headers=headers, timeout=8)
+            except requests.exceptions.RequestException as e:
+                rp = s.get("https://tophub.today/n/KqndgxeLl9", headers=headers, timeout=8)
+
+
+
             soup = BeautifulSoup(rp.content, 'lxml')
 
             his_feeds = soup.find_all(attrs={'class': 'jc-c'})[1]
 
-#         print(type(his_feeds))
+        print(type(his_feeds))
         # print((his_feeds))
         spot_topic_set=[]
         for his_news in his_feeds.find_all('tr'):

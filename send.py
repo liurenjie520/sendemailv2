@@ -71,7 +71,7 @@ class hot_topic(object):
 
             his_feeds = soup.find_all(attrs={'class': 'jc-c'})[1]
 
-        print(type(his_feeds))
+#         print(type(his_feeds))
         # print((his_feeds))
         spot_topic_set=[]
         for his_news in his_feeds.find_all('tr'):
@@ -127,8 +127,8 @@ if __name__ == '__main__':
         website_section="<table><tr>{}</tr>{}</table>".format(website_ttile,website_context)
         websites_brief +=website_section
         print(website_section)
-    # context_ttile="一周热门新闻"
-    # sd = sendEmail.send_mail(my_sender, my_pass, my_user, context=websites_brief, my_sender_alias=my_sender_alias, my_user_alias=my_user_alias,tittle=context_ttile)
-    # sd.make_message()
-    # sd.send_mail()
-    # print("完成{}邮件发送".format(context_ttile))
+    context_ttile="一周热门新闻"
+    sd = sendEmail.send_mail(my_sender, my_pass, my_user, context=websites_brief, my_sender_alias=my_sender_alias, my_user_alias=my_user_alias,tittle=context_ttile)
+    sd.make_message()
+    sd.send_mail()
+    print("完成{}邮件发送".format(context_ttile))

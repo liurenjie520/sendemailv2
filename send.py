@@ -104,15 +104,15 @@ if __name__ == '__main__':
         '虎扑社区 步行街热帖': "https://tophub.today/n/G47o8weMmN",  # 虎扑社区 步行街热帖
         '虎扑社区 影音娱乐热帖': "https://tophub.today/n/K7Gda2XeQy",  # 虎扑社区 影音娱乐热帖
         '虎扑社区 恋爱区热帖': "https://tophub.today/n/wkvlEkYdz1",  # 虎扑社区 恋爱区热帖
-        '吾爱破解 今日热帖': "https://tophub.today/n/NKGoRAzel6",  # 吾爱破解 今日热帖
+#         '吾爱破解 今日热帖': "https://tophub.today/n/NKGoRAzel6",  # 吾爱破解 今日热帖
         '吾爱破解 人气热门': "https://tophub.today/n/Ywv41YMdPa",  # 吾爱破解 人气热门
         '吾爱破解 精品软件区': "https://tophub.today/n/ENeYLEZdY4",  # 吾爱破解 精品软件区
-        '吾爱破解 原创发布区': "https://tophub.today/n/qndgO7LdLl",  # 吾爱破解 原创发布区
-        '哔哩哔哩 全站日榜': "https://tophub.today/n/74KvxwokxM",  # 哔哩哔哩 全站日榜
-        'AppSo网': "https://tophub.today/n/YqoXQLXvOD",  # AppSo网
+#         '吾爱破解 原创发布区': "https://tophub.today/n/qndgO7LdLl",  # 吾爱破解 原创发布区
+#         '哔哩哔哩 全站日榜': "https://tophub.today/n/74KvxwokxM",  # 哔哩哔哩 全站日榜
+#         'AppSo网': "https://tophub.today/n/YqoXQLXvOD",  # AppSo网
         '酷安 今日图文': "https://tophub.today/n/MZd7wnDdrO",  # 酷安 今日图文
-        'V2EX 今日热议': "https://tophub.today/n/wWmoORe4EO",  # V2EX 今日热议
-        'V2EX 分享创造': "https://tophub.today/n/4MdALJlvxD",  # V2EX 分享创造
+#         'V2EX 今日热议': "https://tophub.today/n/wWmoORe4EO",  # V2EX 今日热议
+#         'V2EX 分享创造': "https://tophub.today/n/4MdALJlvxD",  # V2EX 分享创造
 
 
     }

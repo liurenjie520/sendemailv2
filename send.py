@@ -5,6 +5,7 @@ import requests
 from bs4 import BeautifulSoup
 import sendEmail
 from requests.adapters import HTTPAdapter
+import os
 
 class hot_topic(object):
     def __init__(self,spot_topic:str):
@@ -98,10 +99,11 @@ if __name__ == '__main__':
     }
 
     domain="https://tophub.today"
+    SCKEY = os.environ["SCKEY"]
 
     my_sender = '1449621606@qq.com'  # 发件人邮箱账号
     my_sender_alias = '爬虫机器人'  # 发件人邮箱别名
-    my_pass = ''  # 发件人邮箱密码
+    my_pass = SCKEY  # 发件人邮箱密码
     my_user = '1449621606@qq.com'  # 收件人邮箱账号，我这边发送给自己
     my_user_alias = '一周热门新闻'  # 收件人邮箱账号别名
     websites_brief=""

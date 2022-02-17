@@ -43,14 +43,14 @@ class hot_topic(object):
             "user-agent":self.getRandomAgent(),
         }
 
-
+        time.sleep(5)
         s = requests.Session()
-        s.mount('http://', HTTPAdapter(max_retries=6))
-        s.mount('https://', HTTPAdapter(max_retries=6))
+        s.mount('http://', HTTPAdapter(max_retries=15))
+        s.mount('https://', HTTPAdapter(max_retries=15))
 
         # print(time.strftime('%Y-%m-%d %H:%M:%S'))
         try:
-            rp = s.get(self.spot_topic, headers=headers, timeout=6)
+            rp = s.get(self.spot_topic, headers=headers, timeout=12)
             # return r.text
         except requests.exceptions.RequestException as e:
             print(e)
